@@ -11,6 +11,17 @@ export class Vaga {
 
  //Método para calcular compaibilidade da vaga
   calcularCompatibilidade(habilidadesCandidato) {
+
+    //Prevenção caso usuário não informe habilidades
+    if (!habilidadesCandidato || habilidadesCandidato.length === 0) {
+      return {
+        porcentagem: 0,
+        statusCompatibilidade:"Baixa Compatibilidade",
+        encontradas: [],
+        faltantes: [...this.requisitos]
+      };
+    }
+
     const habilidadesCompativeis = this.requisitos.filter(requisito =>
       habilidadesCandidato.includes(requisito)
     );
@@ -51,8 +62,8 @@ export class VagaFrontEnd extends Vaga {
   }
 
   // Método sobrescrito 
-  obterRotulo() {
-    return `${this.cargo} (${this.senioridade}) - ${this.empresa}`;
+ getRotulo() {
+    return `${this.cargo} [${this.senioridade.toUpperCase()}] - ${this.empresa}`;
   }
 }
 
@@ -64,3 +75,18 @@ export function criarContadorAnalises() {
     return contador;
   };
 }
+
+export function obterMelhorVagaERecomendacao(resultadosAnalise){
+  if (!resultadosAnalise || resultadosAnalise.length === 0) return null;
+
+  const melhorVaga = resultadosAnalise.reduce((acc, atual) => {
+    return atual.analise.porcentagem > acc.analise.porcentagem ? atual : acc;
+  });
+
+const recomendacao = melhorVaga.analise.faltantes.length > 0
+? `Para aumentar suas chances na vaga (${melhorVaga.Vaga.cargo}), estude: ${melhorVaga.analise.faltantes.join(", ")}.`
+: `Parabéns! Você cumpre 100% dos requisitos para a vaga ${melhorVaga.Vaga.empresa}.`
+
+return {melhorVaga, recomendacao};
+}
+
