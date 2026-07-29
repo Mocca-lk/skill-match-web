@@ -1,4 +1,4 @@
-import {VagaTech} from "./motor.js";
+import {VagaFrontEnd} from "./motor.js";
 const chave_Local_Storage = "skillmatch_perfil";
 
 //Tentativas e Status de busca das vagas
@@ -26,7 +26,7 @@ export async function buscarVagas(callbackStatus) {
 
 
         //Criando instância
-        return dadosJSON.map(item => new VagaTech(
+        return dadosJSON.map(item => new VagaFrontEnd(
             item.id,
             item.empresa,
             item.cargo,

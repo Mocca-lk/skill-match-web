@@ -1,4 +1,3 @@
-// Classe base usando os seus atributos
 export class Vaga {
   constructor(id, empresa, cargo, requisitos, salario, modalidade) {
     this.id = id;
@@ -9,8 +8,18 @@ export class Vaga {
     this.modalidade = modalidade;
   }
 
- //Método para calcular compaibilidade da vaga
   calcularCompatibilidade(habilidadesCandidato) {
+    // Prevenção caso usuário não informe habilidades
+    if (!habilidadesCandidato || habilidadesCandidato.length === 0) {
+      return {
+        porcentagem: 0,
+        statusCompatibilidade: "Baixa Compatibilidade 😪",
+        nivel: "baixa",
+        encontradas: [],
+        faltantes: [...this.requisitos]
+      };
+    }
+    
     const habilidadesCompativeis = this.requisitos.filter(requisito =>
       habilidadesCandidato.includes(requisito)
     );
@@ -26,17 +35,22 @@ export class Vaga {
 
     // Status / Classificação
     let statusCompatibilidade = "";
-    if (porcentagem >= 80) {
+    let nivel = "";
+        if (porcentagem >= 80) {
       statusCompatibilidade = "Alta Compatibilidade 😎";
+      nivel = "Alta";
     } else if (porcentagem >= 50) {
       statusCompatibilidade = "Média Compatibilidade 🫤";
+      nivel = "Média";
     } else {
       statusCompatibilidade = "Baixa Compatibilidade 😪";
+      nivel = "Baixa";
     }
 
     return {
       porcentagem: Math.round(porcentagem),
       statusCompatibilidade,
+      nivel,
       encontradas: habilidadesCompativeis,
       faltantes: habilidadesFaltantes
     };
@@ -63,4 +77,18 @@ export function criarContadorAnalises() {
     contador++;
     return contador;
   };
+}
+
+export function obterMelhorVagaERecomendacao(resultadosAnalise) {
+  if (!resultadosAnalise || resultadosAnalise.length === 0) return null;
+
+  const melhorVaga = resultadosAnalise.reduce((acc, atual) => {
+    return atual.analise.porcentagem > acc.analise.porcentagem ? atual : acc;
+  });
+
+  const recomendacao = melhorVaga.analise.faltantes.length > 0
+    ? `Para aumentar suas chances na vaga (${melhorVaga.vaga.cargo}), estude: ${melhorVaga.analise.faltantes.join(", ")}.`
+    : `Parabéns! Você cumpre 100% dos requisitos para a vaga ${melhorVaga.vaga.empresa}.`;
+
+  return { melhorVaga, recomendacao };
 }
