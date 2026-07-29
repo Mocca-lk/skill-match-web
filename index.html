@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/index.styles.css">
+    <title>SkillMatch - Análise de Compatibilidade de Vagas</title>
+    <meta name="description" content="Encontre as melhores vagas na área Tech compatíveis com suas habilidades">
+    <link rel="stylesheet" href="./assets/styles/index.styles.css">
+</head>
+<body>
+
+//Cabeçalho da página
+<header class="cabeçalho">
+    <div class="container-Logo">
+        <img src="./assets/img/logo.svg" alt="LogoTipo SkillMatch">
+        <h1>SkillMatch</h1>
+    </div>
+    <p>Conectando seu perfil às melhores vagas do mercado Tech</p>
+</header>
+
+<main class="main-container">
+
+    <!--Seção de formulário do perfil-->
+    <section class="section-form" aria-labelledby="titulo-form">
+        <h2 id="titulo-form">Seu Perfil Profissional</h2>
+        <form id="form-perfil" class="form-perfil">
+    
+        <div class="form-group"> 
+            <label for="name">Nome Completo: </label>
+            <input type="text" id="name" required placeholder="Ex: Maria Silva">
+        </div>
+
+        <div class="form-group"> 
+            <label for="area">Área de Atuação: </label>
+            <input type="text" id="area" required placeholder="Ex: Desenolvedora FullStack">
+        </div>
+
+        <div class="form-group"> 
+            <label for="skills"> Habilidades (Separe por virgulas)<label>
+            <input type="text" id="skills" required placeholder="Ex: Java Script, HTML...">
+        </div>
+
+        <div class="form-group"> 
+            <label for="experience">Experiência (Meses)</label>
+            <input type="number" id="experience" min="0" value="0">
+        </div>
+    
+        <button type="submit" id="btn-analisar" class="btn-primary">Analisar Compatibilidade</button>
+    </form>
+    </section>
+
+    <!--Recomendação Destaque-->
+    <section id="container-destaque" aria-live="polite">
+    </section>
+
+    <!--Catálogo de Resultados-->
+    <section class="section-vagas" aria-labelledby="titulo-vagas">
+        <h2 id="titulo-vagas">Vagas Disponíveis</h2>
+        <div id="container-vagas" class="vagas-grid" aria-live="polite">
+        </div>
+    </section>
+</main>
+
+ <!--Rodapé da aplicação-->
+ <footer class="footer">
+    <p>2026 - SkillMatch - Projeto Avaliativo SCTec</p>
+ </footer>
+
+   <script type="module" src="./assets/scripts/main.js"></script>
+</body>
+</html>
