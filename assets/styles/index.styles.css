@@ -1,0 +1,36 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a, p, label, span {
+    font-size: 14px;
+}
+
+.container {
+    display: flex;
+}
+
+.menu-horizontal {
+    display: flex;
+    flex-direction: row;
+    list-style: none; background-color: brown;
+    width: auto;
+}
+
+.menu-horizontal a {
+    padding: 20px;
+    justify-content: center;
+    text-decoration: none; color: white;
+    
+
+}
+
+.principal {
+    background-color: brown;
+    text-decoration: none; color: white;
+    padding: 20px;s
+}
+
+.principal section {
+
+}
