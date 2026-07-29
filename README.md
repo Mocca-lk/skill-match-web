@@ -29,6 +29,6 @@ Projeto desenvolvido como atividade prática e avaliativa para o programa **SCTe
 - **JSON:** Armazenamento do banco de dados simulado de vagas.
 
 ## Galeria de imagens - Projeto em Funcionamento:
-<img src="/skill-match-web/assets/img/스크린샷 2026-07-29 172904.png"> <br>
-<img src="/skill-match-web/assets/img/스크린샷 2026-07-29 173031.png"><br>
-<img src="/skill-match-web/assets/img/스크린샷 2026-07-29 173141.png"><br>
+<img src="스크린샷 2026-07-29 172904.png"><br>
+<img src="스크린샷 2026-07-29 173031.png"><br>
+<img src="스크린샷 2026-07-29 173141.png"><br>
